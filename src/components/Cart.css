@@ -6,4 +6,8 @@ h2{
 .cart{
     text-align: right;
     background: #ffff;
+    padding: 1.5em;
+    margin: 1em 0;
+    box-shadow: 0px 0px 1px 1px #0000002b;
+    min-height: 300px;
 }

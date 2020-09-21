@@ -11,7 +11,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { products: [], cartItems: [] }
-    this.handleAddToCart=this.handleAddToCart.bind(this)
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   componentWillMount() {
@@ -25,6 +26,11 @@ class App extends Component {
       .then((responseJson) => this.setState({
         products: responseJson
       }))
+      if(localStorage.getItem('cartItems')){
+        this.setState({
+          cartItems:JSON.parse(localStorage.getItem('cartItems'))
+        })
+      }
   }
 
   handleAddToCart(e, product) {
@@ -45,16 +51,26 @@ class App extends Component {
     })
   }
 
+  handleRemove(e, item) {
+    this.setState(state => {
+      const cartItems = state.cartItems.filter(p => p.id !== item.id)
+      localStorage.setItem('cartItems', cartItems)
+      return { cartItems }
+    });
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row">
-        <div className="col-md-8">
+          <div className="col-md-8">
             <Products products={this.state.products}
-            handleAddToCart={this.handleAddToCart} />
+              handleAddToCart={this.handleAddToCart} />
           </div>
-        <div className="col-md-4">
-            <Cart cartItems={this.state.cartItems} />
+          <div className="col-md-4">
+            <Cart cartItems={this.state.cartItems} 
+            handleRemove={this.handleRemove}
+            />
           </div>
         </div>
       </div>

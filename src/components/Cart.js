@@ -17,10 +17,15 @@ class Cart extends Component {
                         <ul>{cartItems.map(item =>
                             <li>
                                 {item.title}
-                                <button className="btn btn-light">حذف محصول</button>
+                                <button
+                                    className="btn btn-light"
+                                    onClick={(e) => this.props.handleRemove(e, item)}
+                                >
+                                    حذف محصول
+                      </button>
                             </li>
                         )}</ul>
-                        <p>مجموع: {cartItems.reduce((a,b) => a+b.price * b.count,0)} تومان
+                        <p>مجموع: {cartItems.reduce((a, b) => a + b.price * b.count, 0)} تومان
                         </p>
                     </div>
                 }
