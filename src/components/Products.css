@@ -1,0 +1,7 @@
+.product{
+    padding:1rem;
+    margin: 1rem;
+    max-width: 25%;
+    background:white;
+    border: 1px solid #2196f3;
+}
