@@ -1,9 +1,30 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 
-class Cart extends Component{
-    render(){
-        return(
-            <div>سبد خرید</div>
+class Cart extends Component {
+    render() {
+        const { cartItems } = this.props;
+        return (
+            <div className="cart">
+                <h2>سبد خرید</h2>
+                {
+                    cartItems.length === 0 ? "سبد خرید خالی است" :
+                        <div>
+                            تعداد محصولات سبد خرید: {cartItems.length}
+                        </div>
+                }{
+                    cartItems.length > 0 &&
+                    <div>
+                        <ul>{cartItems.map(item =>
+                            <li>
+                                {item.title}
+                                <button className="btn btn-light">حذف محصول</button>
+                            </li>
+                        )}</ul>
+                        <p>مجموع: {cartItems.reduce((a,b) => a+b.price * b.count,0)} تومان
+                        </p>
+                    </div>
+                }
+            </div>
         )
     }
 }

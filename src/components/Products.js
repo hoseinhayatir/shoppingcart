@@ -5,7 +5,7 @@ class Products extends React.Component {
       const productItems = this.props.products.map(product =>
           <div className="col-md-4 text-center product" key={product.id}>
             <div>
-              <img class="img-fluid" src={`/products/0${product.id}.jpg`} alt={product.id}></img>
+              <img className="img-fluid" src={`/products/0${product.id}.jpg`} alt={product.id}></img>
             </div>
             <div>
               <p>
